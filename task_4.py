@@ -2,10 +2,12 @@ def input_error(func):
     def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except (KeyError, ValueError, IndexError):
+        except KeyError:
             return "Enter the argument for the command"
-
-    return inner
+        except ValueError:
+            return "Not a valid value"
+        except IndexError:
+            return "Invalid index in sequence"
 
 @input_error
 def parse_input(user_input):
